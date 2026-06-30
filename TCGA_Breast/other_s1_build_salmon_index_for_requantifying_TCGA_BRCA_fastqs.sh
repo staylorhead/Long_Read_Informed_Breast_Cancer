@@ -1,0 +1,46 @@
+#BSUB -W 8:00
+#BSUB -n 10
+#BSUB -M 80
+#BSUB -R rusage[mem=80]
+#BSUB -q medium
+
+# cd /rsrch5/home/epi/sthead/isoqtl_TCGA
+
+# bsub -J "salmon_idx" -W 8:00 -n 10 -M 80 -R rusage[mem=80] -q medium \
+# -o logs/build_salmon_index_for_requant_TCGA_BRCA_%J.log \
+# scripts/build_salmon_index_for_requantifying_TCGA_BRCA_fastqs.sh
+
+GENOME=/rsrch5/home/epi/bhattacharya_lab/data/GenomicReferences/genome/GCA_000001405.15_GRCh38_no_alt_analysis_set_cleaned_ready_for_salmon.fasta
+GTF=/rsrch5/home/epi/bhattacharya_lab/data/Veiga/STB/SQANTI3/combined_gencodev45_and_ESPRESSO_tumor_filtered.gtf
+DIR_OUT=/rsrch5/home/epi/bhattacharya_lab/data/Veiga/STB/SQANTI3/orthogonal/short-read/salmon/combined_gencodev45_and_ESPRESSO_tumor_filtered
+
+mkdir -p ${DIR_OUT}
+
+source /rsrch5/home/epi/bhattacharya_lab/software/gffread/bin/activate
+
+gffread ${GTF} \
+  -g ${GENOME} \
+  -w ${DIR_OUT}/GCA_000001405.15_GRCh38_no_alt_analysis_set_combined_gencodev45_and_ESPRESSO_tumor_filtered.fasta
+  
+source /rsrch5/home/epi/bhattacharya_lab/software/gffread/bin/deactivate
+
+source /rsrch5/home/epi/bhattacharya_lab/software/mashmap/bin/activate
+
+sh /rsrch5/home/epi/bhattacharya_lab/software/mashmap/bin/generateDecoyTranscriptome.sh \
+ -j 10 \
+ -b /rsrch5/home/epi/bhattacharya_lab/software/bedtools \
+ -a ${GTF} \
+ -g ${GENOME} \
+ -t ${DIR_OUT}/GCA_000001405.15_GRCh38_no_alt_analysis_set_combined_gencodev45_and_ESPRESSO_tumor_filtered.fasta \
+ -o ${DIR_OUT}
+ 
+source /rsrch5/home/epi/bhattacharya_lab/software/mashmap/bin/deactivate
+
+eval "$(/risapps/rhel8/miniforge3/24.5.0-0/bin/conda shell.bash hook)"
+
+conda activate salmon-1.10.2
+
+salmon index -t ${DIR_OUT}/gentrome.fa \
+  -i ${DIR_OUT}/index \
+  --decoys ${DIR_OUT}/decoys.txt \
+  -k 31
