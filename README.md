@@ -1,2 +1,34 @@
 # Long_Read_informed_Breast_Cancer_Paper
-Data and code for manuscript on integrated genetic analysis of breast cancer risk using long-read-derived transcriptome references.
+
+This repository contains scripts for the analyses described in:
+
+> **Improving isoform-level eQTL and integrative genetic analyses of breast cancer risk with long-read RNA transcript assemblies**  
+> Head et al. (2026) [bioRxiv](https://www.biorxiv.org/content/10.64898/2026.03.22.713514v2)
+
+## Overview
+
+We developed a framework for tissue-informed isoform-level eQTL mapping and TWAS+colocalization of breast cancer risk and leverages publicly available long-read RNA-seq assemblies to define tissue-specific transcriptomes. Gene- and isoform-level expression was quantified in three datasets using three annotation strategies each: standard GENCODE v45, a tissue-specific long-read-derived assembly, and a combined annotation merging both.
+
+The pipeline proceeds from raw genotype and RNA-seq data through expression quantification, eQTL mapping, fine-mapping, colocalization with breast cancer GWAS, and isoTWAS association testing.
+
+## Datasets and Pipelines
+
+Scripts are organized by dataset:
+
+### GTEx v8 Breast Mammary Tissue
+**Scripts:** `GTEx_Healthy_Breast` | [`README`]([scripts/GTEx/README_GTEx_pipeline.md](https://github.com/staylorhead/Long_Read_Informed_Breast_Cancer/tree/main/GTEx_Healthy_Breast))
+
+- **Samples:** Unrelated GTEx v8 breast mammary tissue donors
+- **Long-read annotation:** Veiga et al. ESPRESSO normal assembly (`veigaNorm`)
+
+### GTEx v8 Cultured Fibroblasts
+**Scripts:** `GTEx_Fibroblasts` | [`README`]([scripts/GTEx_fibro/README_GTEx_fibro_pipeline.md](https://github.com/staylorhead/Long_Read_Informed_Breast_Cancer/tree/main/GTEx_Fibroblasts))
+
+- **Samples:** Unrelated GTEx v8 cultured fibroblast donors
+- **Long-read annotation:** GTEx v9 SQANTI3 ESPRESSO fibroblast assembly (`ESPRESSO`)
+
+### TCGA BRCA Breast Tumor
+**Scripts:** `TCGA_Breast_Tumor` | [`README`]([scripts/TCGA/README_TCGA_pipeline.md](https://github.com/staylorhead/Long_Read_Informed_Breast_Cancer/tree/main/TCGA_Breast))
+
+- **Samples:** Primary solid tumor samples from TCGA BRCA; genotypes from imputed Affymetrix SNP6 arrays
+- **Long-read annotation:** Veiga et al. ESPRESSO tumor assembly (`veigaTum`)
