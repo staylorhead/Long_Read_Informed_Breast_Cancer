@@ -386,24 +386,6 @@ print("Samples remaining after outlier removal:")
 table(nrow(sample_dat))
 
 ########################################################################
-# batch correction with ComBat
-########################################################################
-
-# THIS IS NOT CORRECT FOR GTEx
-# WILL NEED TO FIX
-# if(do_bc==1){
-#   print("Performing batch correction with ComBat:")
-#   sample_dat$TSS_grouped <- ifelse(table(sample_dat$TSS)[sample_dat$TSS] < 3, 
-#                                  "Other", 
-#                                  sample_dat$TSS)
-#   tx_cts <- ComBat(dat = tx_cts,
-#     batch = sample_dat$TSS_grouped)
-
-#   gene_cts <- ComBat(dat = gene_cts,
-#     batch = sample_dat$TSS_grouped)
-# }
-
-########################################################################
 # PCA
 ########################################################################
 
