@@ -16,19 +16,19 @@ The pipeline proceeds from raw genotype and RNA-seq data through expression quan
 Scripts are organized by dataset:
 
 ### GTEx v8 Breast Mammary Tissue
-**Scripts:** `GTEx_Healthy_Breast` | [`README`]([scripts/GTEx/README_GTEx_pipeline.md](https://github.com/staylorhead/Long_Read_Informed_Breast_Cancer/tree/main/GTEx_Healthy_Breast))
+**Scripts:** `GTEx_Healthy_Breast` | [`README`](GTEx_Healthy_Breast/README.md)
 
 - **Samples:** Unrelated GTEx v8 breast mammary tissue donors
 - **Long-read annotation:** Veiga et al. ESPRESSO normal assembly (`veigaNorm`)
 
 ### GTEx v8 Cultured Fibroblasts
-**Scripts:** `GTEx_Fibroblasts` | [`README`]([scripts/GTEx_fibro/README_GTEx_fibro_pipeline.md](https://github.com/staylorhead/Long_Read_Informed_Breast_Cancer/tree/main/GTEx_Fibroblasts))
+**Scripts:** `GTEx_Fibroblasts` | [`README`](GTEx_Fibroblasts/README.md)
 
 - **Samples:** Unrelated GTEx v8 cultured fibroblast donors
 - **Long-read annotation:** GTEx v9 SQANTI3 ESPRESSO fibroblast assembly (`ESPRESSO`)
 
 ### TCGA BRCA Breast Tumor
-**Scripts:** `TCGA_Breast_Tumor` | [`README`]([scripts/TCGA/README_TCGA_pipeline.md](https://github.com/staylorhead/Long_Read_Informed_Breast_Cancer/tree/main/TCGA_Breast))
+**Scripts:** `TCGA_Breast_Tumor` | [`README`](TCGA_Breast_Tumor/README.md)
 
 - **Samples:** Primary solid tumor samples from TCGA BRCA; genotypes from imputed Affymetrix SNP6 arrays
 - **Long-read annotation:** Veiga et al. ESPRESSO tumor assembly (`veigaTum`)
